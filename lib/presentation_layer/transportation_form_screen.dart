@@ -2,6 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/enums/transportation_type.dart';
+import 'package:transportation_flutter_project/presentation_layer/payment_screen.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
 
 import '../shared/shared_widgets.dart';
@@ -132,7 +133,9 @@ class _TransportationFormScreenState extends State<TransportationFormScreen> {
                   height: 32,
                 ),
                 SharedWidgets.buildElevatedButton(
-                  onPress: () {},
+                  onPress: () {
+                    Get.toNamed(PaymentScreen.routeName);
+                  },
                   btnText: 'Done',
                   btnColor: primaryColor,
                   width: Get.width / 2,

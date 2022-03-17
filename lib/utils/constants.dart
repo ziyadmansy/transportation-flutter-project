@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final Color? redColor = Colors.red[600];
 final Color? greenColor = Colors.greenAccent[700];
-const Color primaryColor = Colors.blueAccent;
+const Color primaryColor = Color(0xff013A6D);
 
 const String ERROR_MESSAGE = 'Oops, something went wrong!';
 const String INTERNET_ERROR_MESSAGE =
@@ -26,21 +26,21 @@ const bool IS_END_DAY_HALF_LEAVE = true;
 const int unauthenticatedStatusCode = 401;
 const int geofencingPeriodicInterval = 5;
 
-const double kCardBorderRadius = 12.0;
+const double kBorderRadius = 8.0;
 const double kCardElevation = 8.0;
 
 final kEnabledBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.circular(4),
+  borderRadius: BorderRadius.circular(kBorderRadius),
   borderSide: const BorderSide(
     width: 1,
-    color: Colors.grey,
+    color: Colors.white,
   ),
 );
 
 final kFocusedBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.circular(4),
+  borderRadius: BorderRadius.circular(kBorderRadius),
   borderSide: const BorderSide(
-    width: 2,
-    color: primaryColor,
+    width: 3,
+    color: Colors.white,
   ),
 );

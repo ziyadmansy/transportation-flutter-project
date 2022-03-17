@@ -12,7 +12,7 @@ void main() {
     GetMaterialApp(
       title: appName,
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: AppPages.initialRoute,
       getPages: AppPages.routes,
       initialBinding: InitialBindings(),
     ),

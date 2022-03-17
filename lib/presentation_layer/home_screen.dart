@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../modules/home/controllers/home_controller.dart';
+import '../buisness_logic_layer/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/homeScreen';
@@ -16,9 +16,20 @@ class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: null,
+    return Container(
+      height: Get.height,
+      width: Get.width,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/imgs/app_background.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(),
+        body: null,
+      ),
     );
   }
 }

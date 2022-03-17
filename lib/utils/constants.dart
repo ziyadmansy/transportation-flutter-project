@@ -12,7 +12,7 @@ const String File_ERROR_MESSAGE =
     'Couldn\'t open the File, Incompatibility issue';
 const String FILE_FORMAT_MESSAGE =
     'Hint: Supported file formats: jpg, png, pdf';
-const String appName = 'Transportation';
+const String appName = 'Shipping';
 
 const String LOCALE_KEY = 'locale';
 const String UID_KEY = 'UserId';

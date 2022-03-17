@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/presentation_layer/login_screen.dart';
+import 'package:transportation_flutter_project/presentation_layer/transportation_form_screen.dart';
 
 import '../presentation_layer/home_screen.dart';
 
@@ -16,6 +17,10 @@ class AppPages {
     GetPage(
       name: LoginScreen.routeName,
       page: () => const LoginScreen(),
+    ),
+    GetPage(
+      name: TransportationFormScreen.routeName,
+      page: () => const TransportationFormScreen(),
     ),
   ];
 }

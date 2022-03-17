@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import '../utils/constants.dart';
 
 class SharedWidgets {
-  static AppBar appBar() {
-    return AppBar();
+  static AppBar appBar({required String title}) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      title: Text(title),
+      elevation: 0.0,
+    );
   }
 
   static Widget buildElevatedButton({

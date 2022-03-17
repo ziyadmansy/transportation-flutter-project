@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 32,
                   ),
                   Image.asset(
-                    'assets/imgs/login_logo.png',
+                    'assets/imgs/app_logo.png',
                     width: Get.width / 2,
                     height: Get.width / 2,
                   ),

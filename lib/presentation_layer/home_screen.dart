@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/enums/transportation_type.dart';
+import 'package:transportation_flutter_project/presentation_layer/profile_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/transportation_form_screen.dart';
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
@@ -40,6 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Image.asset(
                   imgPath,
+                  height: 75,
+                  width: 75,
                 ),
                 SizedBox(
                   width: 16,
@@ -79,6 +82,33 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(kBorderRadius),
+                    bottomLeft: Radius.circular(kBorderRadius),
+                  ),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(ProfileScreen.routeName);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 32,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
             buildTransportationCard(
               title: 'Sea Freight',
               imgPath: 'assets/imgs/sea_logo.png',

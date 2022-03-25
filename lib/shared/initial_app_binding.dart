@@ -6,11 +6,7 @@ import '../buisness_logic_layer/home_controller.dart';
 class InitialBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AuthController>(
-      () => AuthController(),
-    );
-    Get.lazyPut<HomeController>(
-      () => HomeController(),
-    );
+    Get.put(AuthController());
+    Get.put(HomeController());
   }
 }

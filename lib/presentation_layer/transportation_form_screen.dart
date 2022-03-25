@@ -6,6 +6,7 @@ import 'package:transportation_flutter_project/presentation_layer/payment_screen
 import 'package:transportation_flutter_project/utils/constants.dart';
 
 import '../shared/shared_widgets.dart';
+import 'companies_screen.dart';
 
 class TransportationFormScreen extends StatefulWidget {
   static const String routeName = '/transportationFormScreen';
@@ -134,7 +135,7 @@ class _TransportationFormScreenState extends State<TransportationFormScreen> {
                 ),
                 SharedWidgets.buildElevatedButton(
                   onPress: () {
-                    Get.toNamed(PaymentScreen.routeName);
+                    Get.toNamed(CompaniesScreen.routeName);
                   },
                   btnText: 'Done',
                   btnColor: primaryColor,

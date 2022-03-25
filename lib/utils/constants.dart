@@ -14,9 +14,8 @@ const String FILE_FORMAT_MESSAGE =
     'Hint: Supported file formats: jpg, png, pdf';
 const String appName = 'Shipping';
 
-const String LOCALE_KEY = 'locale';
-const String UID_KEY = 'UserId';
-const String TOKEN_KEY = 'token';
+const String LOGGED_IN_KEY = 'isLoggedIn';
+const String TOKEN_KEY = 'tokenKey';
 
 const int MAX_FILE_SIZE = 1;
 const String FILE_SIZE_ERROR_MSG = 'File size can\'t exceed $MAX_FILE_SIZE Mb';

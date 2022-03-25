@@ -5,6 +5,8 @@ import 'package:transportation_flutter_project/presentation_layer/home_screen.da
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
 
+import 'register_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/loginScreen';
   const LoginScreen({Key? key}) : super(key: key);
@@ -176,10 +178,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 16,
                   ),
-                  SharedWidgets.buildElevatedButton(
-                    onPress: () {},
-                    btnText: 'Sign up here',
-                    btnColor: primaryColor,
+                  SharedWidgets.buildOutlinedButton(
+                    onPress: () {
+                      Get.offNamed(RegisterScreen.routeName);
+                    },
+                    btnText: 'Don\'t have an account? Sign up now',
+                    btnColor: Colors.white,
                   ),
                 ],
               ),

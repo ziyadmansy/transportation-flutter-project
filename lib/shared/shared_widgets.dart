@@ -12,6 +12,39 @@ class SharedWidgets {
     );
   }
 
+  static Widget buildBorderedDropDown<T>({
+    required T value,
+    required List<DropdownMenuItem<T>> items,
+    required String hint,
+    required void Function(T?)? onChanged,
+    String? Function(T?)? onValidate,
+    double? itemHeight,
+    bool isDense = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: DropdownButtonFormField<T>(
+        value: value,
+        hint: Text(hint),
+        isExpanded: true,
+        isDense: isDense,
+        itemHeight: itemHeight,
+        decoration: InputDecoration(
+          hintText: hint,
+          label: Text(hint),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(4),
+            ),
+          ),
+        ),
+        items: items,
+        onChanged: onChanged,
+        validator: onValidate,
+      ),
+    );
+  }
+
   static Widget buildElevatedButton({
     required void Function()? onPress,
     required String btnText,
@@ -26,6 +59,31 @@ class SharedWidgets {
         onPressed: onPress,
         child: Text(btnText),
         style: ElevatedButton.styleFrom(
+          primary: btnColor,
+          onSurface: btnColor,
+          textStyle: btnTextStyle,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kBorderRadius),
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Widget buildOutlinedButton({
+    required void Function()? onPress,
+    required String btnText,
+    Color? btnColor,
+    double? width,
+    TextStyle? btnTextStyle,
+  }) {
+    return SizedBox(
+      height: 40,
+      width: width,
+      child: OutlinedButton(
+        onPressed: onPress,
+        child: Text(btnText),
+        style: OutlinedButton.styleFrom(
           primary: btnColor,
           onSurface: btnColor,
           textStyle: btnTextStyle,

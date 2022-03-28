@@ -9,6 +9,7 @@ class SharedWidgets {
       backgroundColor: Colors.transparent,
       title: Text(title),
       elevation: 0.0,
+      centerTitle: true,
     );
   }
 

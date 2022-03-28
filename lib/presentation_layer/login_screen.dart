@@ -5,6 +5,7 @@ import 'package:transportation_flutter_project/presentation_layer/home_screen.da
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
 
+import 'register_company_screen.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -180,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SharedWidgets.buildOutlinedButton(
                     onPress: () {
-                      Get.offNamed(RegisterScreen.routeName);
+                      Get.offNamed(RegisterCompanyScreen.routeName);
                     },
                     btnText: 'Don\'t have an account? Sign up now',
                     btnColor: Colors.white,

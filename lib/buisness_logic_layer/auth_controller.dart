@@ -94,34 +94,35 @@ class AuthController extends GetConnect {
 
   Future<void> registerCompany({
     required String name,
+    required String email,
     required String password,
     required File image,
   }) async {
     try {
-      print(ApiRoutes.register);
-      var formData = dio.FormData.fromMap({
-        // 'token': SharedWidgets.token.value,
-        'name': name,
-        'email': name,
-        'password': name,
-        'image': await dio.MultipartFile.fromFile(
-          image.path,
-          filename: '$name.jpg',
-        )
-      });
-      var response = await dio.Dio().post(
-        ApiRoutes.register,
-        data: formData,
-      );
+      // print(ApiRoutes.register);
+      // var formData = dio.FormData.fromMap({
+      //   // 'token': SharedWidgets.token.value,
+      //   'name': name,
+      //   'email': email,
+      //   'password': password,
+      //   'image': await dio.MultipartFile.fromFile(
+      //     image.path,
+      //     filename: '$name.jpg',
+      //   )
+      // });
+      // var response = await dio.Dio().post(
+      //   ApiRoutes.register,
+      //   data: formData,
+      // );
 
-      final decodedResponseBody = response.data;
-      print(decodedResponseBody);
-      print(response.statusCode);
-      if (response.statusCode == 201) {
-        // Success
-      } else {
-        throw Exception();
-      }
+      // final decodedResponseBody = response.data;
+      // print(decodedResponseBody);
+      // print(response.statusCode);
+      // if (response.statusCode == 201) {
+      //   // Success
+      // } else {
+      //   throw Exception();
+      // }
     } catch (e) {
       print(e);
       rethrow;

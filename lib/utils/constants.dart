@@ -15,7 +15,15 @@ const String FILE_FORMAT_MESSAGE =
 const String appName = 'Shipping';
 
 const String LOGGED_IN_KEY = 'isLoggedIn';
-const String TOKEN_KEY = 'tokenKey';
+const String uidKey = 'uidKey';
+const String userTypeKey = 'userTypeKey';
+
+const String consumer = 'consumer';
+const String comapny = 'company';
+
+const String sea = 'sea freight';
+const String land = 'land_shipping';
+const String custom = 'custom clearance';
 
 const int MAX_FILE_SIZE = 1;
 const String FILE_SIZE_ERROR_MSG = 'File size can\'t exceed $MAX_FILE_SIZE Mb';

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/presentation_layer/shipping_products_screen.dart';
 
+import '../buisness_logic_layer/auth_controller.dart';
 import '../shared/shared_widgets.dart';
 import '../utils/constants.dart';
+import 'orders_screen.dart';
 
 class ShippingChoicesScreen extends StatefulWidget {
   static const String routeName = '/shippingChoicesScreen';
@@ -14,6 +16,10 @@ class ShippingChoicesScreen extends StatefulWidget {
 }
 
 class _ShippingChoicesScreenState extends State<ShippingChoicesScreen> {
+  final authController = Get.find<AuthController>();
+
+  bool _isLoading = false;
+
   bool isSeaChecked = false;
   bool isLandChecked = false;
   bool isCustomChecked = false;
@@ -31,6 +37,42 @@ class _ShippingChoicesScreenState extends State<ShippingChoicesScreen> {
       contentPadding: const EdgeInsets.all(16),
       onChanged: onChanged,
     );
+  }
+
+  Future<void> register() async {
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      Map args = Get.arguments;
+      await authController.registerCompany(
+        email: args['email'],
+        password: args['password'],
+        name: args['name'],
+        image: args['image'],
+        isSea: isSeaChecked,
+        isLand: isLandChecked,
+        isCustom: isCustomChecked,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+
+      Get.offNamed(ShippingProductsScreen.routeName);
+    } catch (error) {
+      print(error);
+      SharedWidgets.errorDialog(
+        context: context,
+        body: ERROR_MESSAGE,
+        title: 'Error 404',
+        onConfirm: () {
+          setState(() {
+            _isLoading = false;
+          });
+          Get.back();
+        },
+      );
+    }
   }
 
   @override
@@ -112,9 +154,7 @@ class _ShippingChoicesScreenState extends State<ShippingChoicesScreen> {
                     ),
                     SharedWidgets.buildElevatedButton(
                       width: Get.width / 2,
-                      onPress: () {
-                        Get.toNamed(ShippingProductsScreen.routeName);
-                      },
+                      onPress: _isLoading ? null : register,
                       btnText: 'Done',
                       btnColor: primaryColor,
                     ),

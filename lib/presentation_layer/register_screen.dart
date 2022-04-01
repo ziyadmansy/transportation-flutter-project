@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../buisness_logic_layer/auth_controller.dart';
 import '../../shared/shared_widgets.dart';
@@ -16,6 +19,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  XFile? image;
   bool _isLoading = false;
   bool isObscure = true;
 
@@ -29,6 +33,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
+  Future<void> pickImageGallery() async {
+    final ImagePicker _picker = ImagePicker();
+    image = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {});
+  }
 
   void register() async {
     final isValid = formKey.currentState?.validate();
@@ -44,6 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           password: passwordController.text,
           firstName: firstNameController.text,
           lastName: lastNameController.text,
+          image: File(image!.path),
         );
         setState(() {
           _isLoading = false;
@@ -105,6 +116,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   SizedBox(
                     height: 32,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SharedWidgets.buildElevatedButton(
+                          onPress: pickImageGallery,
+                          btnColor: primaryColor,
+                          btnText: 'Pick Image',
+                        ),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      image == null
+                          ? Container(
+                              height: 100,
+                              width: 100,
+                              color: Colors.grey,
+                              child: Center(
+                                child: Text(
+                                  'Pick Image',
+                                ),
+                              ),
+                            )
+                          : Image.file(
+                              File(image!.path),
+                              width: 100,
+                              height: 100,
+                            ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
                   ),
                   ToggleButtons(
                     color: Colors.white,

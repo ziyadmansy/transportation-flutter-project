@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/models/shipping_product.dart';
-import 'package:transportation_flutter_project/presentation_layer/orders_screen.dart';
 
+import '../buisness_logic_layer/auth_controller.dart';
 import '../shared/shared_widgets.dart';
 import '../utils/constants.dart';
 
@@ -15,6 +15,10 @@ class ShippingProductsScreen extends StatefulWidget {
 }
 
 class _ShippingProductsScreenState extends State<ShippingProductsScreen> {
+  final authController = Get.find<AuthController>();
+
+  final formKey = GlobalKey<FormState>();
+
   RxList<ShippingProduct> seaProducts = <ShippingProduct>[
     ShippingProduct(name: 'first', weight: 0.11),
     ShippingProduct(name: 'second', weight: 5.99),
@@ -280,9 +284,7 @@ class _ShippingProductsScreenState extends State<ShippingProductsScreen> {
                 ),
                 SharedWidgets.buildElevatedButton(
                   width: Get.width / 2,
-                  onPress: () {
-                    Get.toNamed(OrdersScreen.routeName);
-                  },
+                  onPress: () {},
                   btnText: 'Done',
                   btnColor: primaryColor,
                 ),

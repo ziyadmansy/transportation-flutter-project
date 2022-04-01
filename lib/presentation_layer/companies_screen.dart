@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_star_rating/simple_star_rating.dart';
+import 'package:transportation_flutter_project/buisness_logic_layer/orders_controller.dart';
+import 'package:transportation_flutter_project/presentation_layer/new_order_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/payment_screen.dart';
 
 import '../shared/shared_widgets.dart';
@@ -17,24 +19,31 @@ class CompaniesScreen extends StatefulWidget {
 class _CompaniesScreenState extends State<CompaniesScreen> {
   Widget buildCompanyListTile({
     required String title,
+    required String subTitle,
     required String imgUrl,
     required VoidCallback onPress,
-    required double rate,
+    required double price,
   }) {
     return ListTile(
       tileColor: Colors.white54,
-      leading: Container(
-        width: 50,
-        height: 50,
-        color: Colors.white,
+      leading: Image.network(
+        imgUrl,
+        width: 70,
+        height: 70,
+        errorBuilder: (BuildContext context, Object obj, StackTrace? s) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Icon(
+              Icons.close,
+              size: 35,
+              color: redColor,
+            ),
+          );
+        },
       ),
       title: Text(title),
-      trailing: SimpleStarRating(
-        starCount: 5,
-        rating: rate,
-        size: 18,
-        isReadOnly: true,
-      ),
+      subtitle: Text(subTitle),
+      trailing: Text('\$${price.toStringAsFixed(2)}'),
       contentPadding: const EdgeInsets.symmetric(
         vertical: 8.0,
         horizontal: 16,
@@ -45,6 +54,7 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ordersController = Get.find<OrdersController>();
     return Container(
       height: Get.height,
       width: Get.width,
@@ -67,13 +77,27 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            buildCompanyListTile(
-              title: 'Name of Comapny',
-              imgUrl: '',
-              rate: 3.0,
-              onPress: () {
-                Get.toNamed(PaymentScreen.routeName);
-              },
+            Expanded(
+              child: ListView.builder(
+                itemCount: ordersController.companies.length,
+                itemBuilder: (context, i) {
+                  final company = ordersController.companies[i];
+                  return buildCompanyListTile(
+                    title: company.companyDetails?.name ?? '',
+                    subTitle: company.materialName ?? '',
+                    imgUrl: company.companyDetails?.logo ?? '',
+                    price: company.price ?? 0.0,
+                    onPress: () {
+                      Get.toNamed(
+                        NewOrderScreen.routeName,
+                        arguments: {
+                          'company': company,
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),

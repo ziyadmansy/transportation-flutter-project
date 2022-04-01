@@ -1,9 +1,13 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../buisness_logic_layer/auth_controller.dart';
 import '../utils/constants.dart';
 
 class SharedWidgets {
+  static int uid = Get.find<AuthController>().uid.value;
+
   static AppBar appBar({required String title}) {
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -26,7 +30,9 @@ class SharedWidgets {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: DropdownButtonFormField<T>(
         value: value,
-        hint: Text(hint),
+        hint: Text(
+          hint,
+        ),
         isExpanded: true,
         isDense: isDense,
         itemHeight: itemHeight,
@@ -38,6 +44,8 @@ class SharedWidgets {
               Radius.circular(4),
             ),
           ),
+          filled: true,
+          fillColor: Colors.white54,
         ),
         items: items,
         onChanged: onChanged,

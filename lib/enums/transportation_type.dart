@@ -1,5 +1,5 @@
-enum TransportationType {
-  sea,
-  land,
-  custom,
-}
+// enum TransportationType {
+//   sea,
+//   land,
+//   custom,
+// }

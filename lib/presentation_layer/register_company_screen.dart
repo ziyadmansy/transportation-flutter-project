@@ -20,7 +20,6 @@ class RegisterCompanyScreen extends StatefulWidget {
 }
 
 class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
-  bool _isLoading = false;
   bool isObscure = true;
 
   XFile? image;
@@ -46,20 +45,22 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
       FocusScope.of(context).unfocus();
 
       try {
-        setState(() {
-          _isLoading = true;
-        });
-        await authController.registerCompany(
-          email: emailController.text,
-          password: passwordController.text,
-          name: nameController.text,
-          image: File(image!.path),
-        );
-        setState(() {
-          _isLoading = false;
-        });
+        // await authController.registerCompany(
+        //   email: emailController.text,
+        //   password: passwordController.text,
+        //   name: nameController.text,
+        //   image: File(image!.path),
+        // );
 
-        Get.offNamed(ShippingChoicesScreen.routeName);
+        Get.offNamed(
+          ShippingChoicesScreen.routeName,
+          arguments: {
+            'email': emailController.text,
+            'password': passwordController.text,
+            'name': nameController.text,
+            'image': File(image!.path),
+          },
+        );
       } catch (error) {
         print(error);
         SharedWidgets.errorDialog(
@@ -67,9 +68,6 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
           body: ERROR_MESSAGE,
           title: 'Error 404',
           onConfirm: () {
-            setState(() {
-              _isLoading = false;
-            });
             Get.back();
           },
         );
@@ -233,7 +231,7 @@ class _RegisterCompanyScreenState extends State<RegisterCompanyScreen> {
                   ),
                   SharedWidgets.buildElevatedButton(
                     width: Get.width,
-                    onPress: _isLoading ? null : register,
+                    onPress: register,
                     btnText: 'Sign up',
                     btnColor: primaryColor,
                   ),

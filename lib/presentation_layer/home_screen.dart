@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Get.toNamed(
                   TransportationFormScreen.routeName,
-                  arguments: TransportationType.sea,
+                  arguments: sea,
                 );
               },
             ),
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Get.toNamed(
                   TransportationFormScreen.routeName,
-                  arguments: TransportationType.land,
+                  arguments: land,
                 );
               },
             ),
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Get.toNamed(
                   TransportationFormScreen.routeName,
-                  arguments: TransportationType.custom,
+                  arguments: custom,
                 );
               },
             ),

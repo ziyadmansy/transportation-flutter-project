@@ -8,20 +8,20 @@ import '../exceptions/unauthenticated_exception.dart';
 import 'package:dio/dio.dart' as dio;
 import '../presentation_layer/login_screen.dart';
 import '../shared/api_routes.dart';
+import '../shared/shared_widgets.dart';
 import '../utils/constants.dart';
 
 class AuthController extends GetConnect {
-  var token = ''.obs;
-  // RxInt userType = (-1).obs;
-  // RxInt vendorId = (-1).obs;
+  RxInt uid = (-1).obs;
+  RxString userType = ''.obs;
 
-  bool isAuth() => token.isNotEmpty;
+  bool isAuth() => uid > 0;
 
   Future<bool> checkLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _isLoggedIn = prefs.getBool(LOGGED_IN_KEY) ?? false;
     if (_isLoggedIn) {
-      token.value = prefs.getString(TOKEN_KEY) ?? '';
+      uid.value = prefs.getInt(uidKey) ?? -1;
       // userType.value = prefs.getInt(userTypeKey) ?? -1;
       // vendorId.value = prefs.getInt(vendorIdKey) ?? -1;
       return true;
@@ -33,35 +33,33 @@ class AuthController extends GetConnect {
   Future<void> loginUser(String username, String password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print(ApiRoutes.login);
-    // Response response = await post(
-    //   ApiRoutes.login,
-    //   json.encode({
-    //     'username': username,
-    //     'password': password,
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //   },
-    // );
+    Response response = await post(
+      ApiRoutes.login,
+      json.encode({
+        'username': username,
+        'password': password,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
 
-    // final decodedResponseBody = response.body;
-    // print(decodedResponseBody);
-    // print(response.statusCode);
-    // if (response.statusCode == 200) {
-    //   token.value = decodedResponseBody['token'];
-    //   // userType.value = decodedResponseBody['user_type'];
-    //   // if (userType.value == 2) {
-    //   //   vendorId.value = decodedResponseBody['vendor_id'];
-    //   //   await prefs.setInt(vendorIdKey, vendorId.value);
-    //   // }
-    //   await prefs.setString(TOKEN_KEY, token.value);
-    //   // await prefs.setInt(userTypeKey, userType.value);
-    //   await prefs.setBool(LOGGED_IN_KEY, true);
-    //   print(token);
-    // } else {
-    //   throw UnauthenticatedException();
-    // }
+    final decodedResponseBody = response.body;
+    print(decodedResponseBody);
+    print(response.statusCode);
+    if (response.statusCode == 201) {
+      uid.value = decodedResponseBody['id'];
+      userType.value = decodedResponseBody['type'];
+
+      await prefs.setInt(uidKey, uid.value);
+      await prefs.setString(userTypeKey, userType.value);
+      await prefs.setBool(LOGGED_IN_KEY, true);
+      print(uid.value);
+      print(userType.value);
+    } else {
+      throw UnauthenticatedException();
+    }
   }
 
   Future<void> registerUser({
@@ -69,27 +67,31 @@ class AuthController extends GetConnect {
     required String password,
     required String firstName,
     required String lastName,
+    required File image,
   }) async {
-    print(ApiRoutes.register);
-    // Response response = await post(
-    //   ApiRoutes.register,
-    //   {
-    //     'password': password,
-    //     'email': email,
-    //     'first_name': firstName,
-    //     'last_name': lastName,
-    //   },
-    // );
+    print(ApiRoutes.consumerRegister);
+    var formData = dio.FormData.fromMap({
+      'username': email,
+      'password': password,
+      'name': '$firstName $lastName',
+      'profile_image': await dio.MultipartFile.fromFile(
+        image.path,
+      )
+    });
+    var response = await dio.Dio().post(
+      ApiRoutes.consumerRegister,
+      data: formData,
+    );
 
-    // final decodedResponseBody = response.body;
-    // print(decodedResponseBody);
-    // print(response.statusCode);
-    // if (response.statusCode == 201) {
-    //   // token = decodedResponseBody['token'];
-    //   // print(token);
-    // } else {
-    //   throw UnauthenticatedException();
-    // }
+    final decodedResponseBody = response.data;
+    print(decodedResponseBody);
+    print(response.statusCode);
+    if (response.statusCode == 201) {
+      uid = decodedResponseBody['id'];
+      print(uid);
+    } else {
+      throw UnauthenticatedException();
+    }
   }
 
   Future<void> registerCompany({
@@ -97,32 +99,37 @@ class AuthController extends GetConnect {
     required String email,
     required String password,
     required File image,
+    required bool isSea,
+    required bool isLand,
+    required bool isCustom,
   }) async {
     try {
-      // print(ApiRoutes.register);
-      // var formData = dio.FormData.fromMap({
-      //   // 'token': SharedWidgets.token.value,
-      //   'name': name,
-      //   'email': email,
-      //   'password': password,
-      //   'image': await dio.MultipartFile.fromFile(
-      //     image.path,
-      //     filename: '$name.jpg',
-      //   )
-      // });
-      // var response = await dio.Dio().post(
-      //   ApiRoutes.register,
-      //   data: formData,
-      // );
+      print(ApiRoutes.companyRegister);
+      var formData = dio.FormData.fromMap({
+        'username': email,
+        'password': password,
+        'name': name,
+        'is_sea_freight': isSea,
+        'is_land_shipping': isLand,
+        'is_customs_clearance': isCustom,
+        'logo': await dio.MultipartFile.fromFile(
+          image.path,
+        ),
+      });
+      var response = await dio.Dio().post(
+        ApiRoutes.companyRegister,
+        data: formData,
+      );
 
-      // final decodedResponseBody = response.data;
-      // print(decodedResponseBody);
-      // print(response.statusCode);
-      // if (response.statusCode == 201) {
-      //   // Success
-      // } else {
-      //   throw Exception();
-      // }
+      final decodedResponseBody = response.data;
+      print(decodedResponseBody);
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        uid.value = decodedResponseBody['id'];
+        print(uid.value);
+      } else {
+        throw UnauthenticatedException();
+      }
     } catch (e) {
       print(e);
       rethrow;

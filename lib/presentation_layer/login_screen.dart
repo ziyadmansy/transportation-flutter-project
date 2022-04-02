@@ -181,9 +181,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SharedWidgets.buildOutlinedButton(
                     onPress: () {
+                      Get.offNamed(RegisterScreen.routeName);
+                    },
+                    btnText: 'Consumer don\'t have an account? Sign up now',
+                    btnColor: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  SharedWidgets.buildOutlinedButton(
+                    onPress: () {
                       Get.offNamed(RegisterCompanyScreen.routeName);
                     },
-                    btnText: 'Don\'t have an account? Sign up now',
+                    btnText: 'Company don\'t have an account? Sign up now',
                     btnColor: Colors.white,
                   ),
                 ],

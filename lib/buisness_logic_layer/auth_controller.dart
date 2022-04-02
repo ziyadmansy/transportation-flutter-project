@@ -101,7 +101,7 @@ class AuthController extends GetConnect {
     print(decodedResponseBody);
     print(response.statusCode);
     if (response.statusCode == 201) {
-      uid = decodedResponseBody['id'];
+      uid.value = decodedResponseBody['id'];
       print(uid);
     } else {
       throw UnauthenticatedException();

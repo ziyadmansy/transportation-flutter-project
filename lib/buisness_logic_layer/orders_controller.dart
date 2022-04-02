@@ -12,10 +12,10 @@ class OrdersController extends GetConnect {
   RxList<Company> companies = <Company>[].obs;
   RxList<Order> orders = <Order>[].obs;
 
-  Future<void> getOrders() async {
-    print(ApiRoutes.companyOrders);
+  Future<void> getOrders({bool isCompany = true}) async {
+    print(isCompany ? ApiRoutes.companyOrders : ApiRoutes.consumerOrders);
     Response response = await get(
-      ApiRoutes.companyOrders,
+      isCompany ? ApiRoutes.companyOrders : ApiRoutes.consumerOrders,
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/buisness_logic_layer/orders_controller.dart';
-import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 
 import '../utils/constants.dart';
 
 class OrdersPage extends StatefulWidget {
-  const OrdersPage({Key? key}) : super(key: key);
+  bool isCompany;
+  OrdersPage({Key? key, this.isCompany = false}) : super(key: key);
 
   @override
   State<OrdersPage> createState() => _OrdersPageState();
@@ -15,7 +15,7 @@ class OrdersPage extends StatefulWidget {
 class _OrdersPageState extends State<OrdersPage> {
   final ordersController = Get.find<OrdersController>();
   Future<void> getOrder() async {
-    await ordersController.getOrders();
+    await ordersController.getOrders(isCompany: widget.isCompany);
   }
 
   @override
@@ -42,19 +42,23 @@ class _OrdersPageState extends State<OrdersPage> {
             itemCount: ordersController.orders.length,
             itemBuilder: (context, index) {
               final order = ordersController.orders[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(kBorderRadius),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListTile(
-                    title: Text('${order.service.toUpperCase()} - ${order.id}'),
-                    subtitle: Text(
-                        'From: ${order.fromCountry}\nTo: ${order.toCountry}'),
-                    isThreeLine: true,
-                    trailing: Text('Weight: ${order.weight}'),
-                    onTap: null,
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ListTile(
+                      title:
+                          Text('${order.service.toUpperCase()} - ${order.id}'),
+                      subtitle: Text(
+                          'From: ${order.fromCountry}\nTo: ${order.toCountry}'),
+                      isThreeLine: true,
+                      trailing: Text('Weight: ${order.weight}'),
+                      onTap: null,
+                    ),
                   ),
                 ),
               );

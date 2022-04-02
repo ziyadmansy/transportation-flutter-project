@@ -14,6 +14,10 @@ class ApiRoutes {
   static String companyOrders = '$apiUrl/company-orders/${SharedWidgets.uid}';
   static String companyDetails = '$apiUrl/company/${SharedWidgets.uid}';
   static String addCompanyPrices = '$apiUrl/company-prices';
+  static String getCompanyPrices =
+      '$apiUrl/company-prices/${SharedWidgets.uid}';
+  static String deleteCompanyPrices(int itemId) =>
+      '$apiUrl/company-prices/$itemId';
 
   // Consumer
   static const String companiesList = '$apiUrl/companies';

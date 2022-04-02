@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:transportation_flutter_project/presentation_layer/company_home_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/login_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/new_order_screen.dart';
+import 'package:transportation_flutter_project/presentation_layer/new_shipping_products_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/orders_page.dart';
 import 'package:transportation_flutter_project/presentation_layer/payment_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/shipping_choices_screen.dart';
@@ -68,6 +69,10 @@ class AppPages {
     GetPage(
       name: CompanyHomeScreen.routeName,
       page: () => const CompanyHomeScreen(),
+    ),
+    GetPage(
+      name: NewShippingProductsScreen.routeName,
+      page: () => const NewShippingProductsScreen(),
     ),
   ];
 }

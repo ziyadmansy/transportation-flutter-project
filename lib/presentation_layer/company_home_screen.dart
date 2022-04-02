@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:transportation_flutter_project/presentation_layer/company_profile_page.dart';
+import 'package:transportation_flutter_project/presentation_layer/new_shipping_products_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/orders_page.dart';
 import 'package:transportation_flutter_project/presentation_layer/shipping_products_screen.dart';
 
@@ -24,7 +26,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
     super.initState();
     _bottomNavItems = [
       {
-        'title': 'Products',
+        'title': 'Prices',
         'body': ShippingProductsPage(),
       },
       {
@@ -92,6 +94,12 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
         ],
       ),
       body: _bottomNavItems[_selectedBottomNav]['body'] as Widget,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Get.toNamed(NewShippingProductsScreen.routeName);
+        },
+      ),
     );
   }
 }

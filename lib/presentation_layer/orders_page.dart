@@ -26,40 +26,42 @@ class _OrdersPageState extends State<OrdersPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: Get.height,
-      width: Get.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/imgs/app_background.png'),
-          fit: BoxFit.cover,
+    return Obx(() {
+      return Container(
+        height: Get.height,
+        width: Get.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/imgs/app_background.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: ListView.builder(
-          itemCount: ordersController.orders.length,
-          itemBuilder: (context, index) {
-            final order = ordersController.orders[index];
-            return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(kBorderRadius),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ListTile(
-                  title: Text('${order.service.toUpperCase()} - ${order.id}'),
-                  subtitle: Text(
-                      'From: ${order.fromCountry}\nTo: ${order.toCountry}'),
-                  isThreeLine: true,
-                  trailing: Text('Weight: ${order.weight}'),
-                  onTap: null,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: ListView.builder(
+            itemCount: ordersController.orders.length,
+            itemBuilder: (context, index) {
+              final order = ordersController.orders[index];
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(kBorderRadius),
                 ),
-              ),
-            );
-          },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: ListTile(
+                    title: Text('${order.service.toUpperCase()} - ${order.id}'),
+                    subtitle: Text(
+                        'From: ${order.fromCountry}\nTo: ${order.toCountry}'),
+                    isThreeLine: true,
+                    trailing: Text('Weight: ${order.weight}'),
+                    onTap: null,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

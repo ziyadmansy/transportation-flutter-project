@@ -24,7 +24,7 @@ class SharedWidgets {
     required void Function(T?)? onChanged,
     String? Function(T?)? onValidate,
     double? itemHeight,
-    bool isDense = false,
+    bool isDense = true,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),

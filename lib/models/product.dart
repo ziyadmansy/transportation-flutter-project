@@ -1,5 +1,5 @@
 class Product {
-  final int id;
+  int? id;
   final String name;
 
   Product({
@@ -12,5 +12,12 @@ class Product {
       id: json['id'],
       name: json['name'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+    };
   }
 }

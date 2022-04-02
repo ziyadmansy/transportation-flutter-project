@@ -7,7 +7,6 @@ import 'package:transportation_flutter_project/presentation_layer/transportation
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
 
-import '../buisness_logic_layer/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/homeScreen';
@@ -18,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final controller = Get.find<HomeController>();
 
   Widget buildTransportationCard({
     required String title,

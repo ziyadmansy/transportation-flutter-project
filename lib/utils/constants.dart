@@ -19,7 +19,7 @@ const String uidKey = 'uidKey';
 const String userTypeKey = 'userTypeKey';
 
 const String consumer = 'consumer';
-const String comapny = 'company';
+const String company = 'company';
 
 const String sea = 'sea freight';
 const String land = 'land_shipping';

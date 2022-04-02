@@ -6,15 +6,14 @@ import '../buisness_logic_layer/auth_controller.dart';
 import '../shared/shared_widgets.dart';
 import '../utils/constants.dart';
 
-class ShippingProductsScreen extends StatefulWidget {
-  static const String routeName = '/shippingProductsScreen';
-  const ShippingProductsScreen({Key? key}) : super(key: key);
+class ShippingProductsPage extends StatefulWidget {
+  const ShippingProductsPage({Key? key}) : super(key: key);
 
   @override
-  State<ShippingProductsScreen> createState() => _ShippingProductsScreenState();
+  State<ShippingProductsPage> createState() => _ShippingProductsPageState();
 }
 
-class _ShippingProductsScreenState extends State<ShippingProductsScreen> {
+class _ShippingProductsPageState extends State<ShippingProductsPage> {
   final authController = Get.find<AuthController>();
 
   final formKey = GlobalKey<FormState>();
@@ -45,13 +44,12 @@ class _ShippingProductsScreenState extends State<ShippingProductsScreen> {
           ),
         ),
         child: Scaffold(
-          appBar: SharedWidgets.appBar(title: 'Products'),
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                  height: 16,
+                  height: 32,
                 ),
                 Card(
                   shape: RoundedRectangleBorder(

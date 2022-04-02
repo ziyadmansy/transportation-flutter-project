@@ -48,6 +48,17 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
         to: toCountryController.text,
       );
 
+      Get.snackbar(
+        'Success',
+        'Order has been made',
+        icon: Icon(
+          Icons.check,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+
       Get.toNamed(PaymentScreen.routeName);
     }
   }
@@ -108,6 +119,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                         hint: 'From',
                         isIgnoringTextInput: true,
                         onClick: () {
+                          FocusScope.of(context).unfocus();
                           showCountryPicker(
                             context: context,
                             showPhoneCode: true,
@@ -135,6 +147,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                         hint: 'To',
                         isIgnoringTextInput: true,
                         onClick: () {
+                          FocusScope.of(context).unfocus();
                           showCountryPicker(
                             context: context,
                             showPhoneCode: true,

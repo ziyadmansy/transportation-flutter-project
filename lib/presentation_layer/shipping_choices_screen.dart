@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:transportation_flutter_project/presentation_layer/company_home_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/shipping_products_screen.dart';
 
 import '../buisness_logic_layer/auth_controller.dart';
 import '../shared/shared_widgets.dart';
 import '../utils/constants.dart';
-import 'orders_screen.dart';
+import 'orders_page.dart';
 
 class ShippingChoicesScreen extends StatefulWidget {
   static const String routeName = '/shippingChoicesScreen';
@@ -58,7 +59,7 @@ class _ShippingChoicesScreenState extends State<ShippingChoicesScreen> {
         _isLoading = false;
       });
 
-      Get.offNamed(ShippingProductsScreen.routeName);
+      Get.offNamed(CompanyHomeScreen.routeName);
     } catch (error) {
       print(error);
       SharedWidgets.errorDialog(

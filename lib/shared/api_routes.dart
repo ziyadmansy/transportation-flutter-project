@@ -1,3 +1,5 @@
+import 'package:transportation_flutter_project/shared/shared_widgets.dart';
+
 class ApiRoutes {
   static const String baseUrl = 'http://10.0.2.2:8000';
 
@@ -9,9 +11,11 @@ class ApiRoutes {
   static const String systemMaterial = '$apiUrl/materils';
 
   // Company APIs
+  static String companyOrders = '$apiUrl/company-orders/${SharedWidgets.uid}';
+  static String companyDetails = '$apiUrl/company/${SharedWidgets.uid}';
 
   // Consumer
   static const String companiesList = '$apiUrl/companies';
   static const String createOrder = '$apiUrl/order';
-  static String consumerOrders(int uid) => '$apiUrl/consumer-orders/$uid';
+  static String consumerOrders = '$apiUrl/consumer-orders/${SharedWidgets.uid}';
 }

@@ -5,10 +5,32 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transportation_flutter_project/models/company.dart';
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 
+import '../models/order.dart';
 import '../shared/api_routes.dart';
 
 class OrdersController extends GetConnect {
   RxList<Company> companies = <Company>[].obs;
+  RxList<Order> orders = <Order>[].obs;
+
+  Future<void> getOrders() async {
+    print(ApiRoutes.companyOrders);
+    Response response = await get(
+      ApiRoutes.companyOrders,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
+
+    final decodedResponseBody = response.body;
+    print(decodedResponseBody);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      orders.value = (decodedResponseBody as List)
+          .map((order) => Order.fromJson(order))
+          .toList();
+    }
+  }
 
   Future<void> makeOrder({
     required int companyId,

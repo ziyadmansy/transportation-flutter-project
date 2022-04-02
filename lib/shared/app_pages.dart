@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
+import 'package:transportation_flutter_project/presentation_layer/company_home_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/login_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/new_order_screen.dart';
-import 'package:transportation_flutter_project/presentation_layer/orders_screen.dart';
+import 'package:transportation_flutter_project/presentation_layer/orders_page.dart';
 import 'package:transportation_flutter_project/presentation_layer/payment_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/shipping_choices_screen.dart';
 import 'package:transportation_flutter_project/presentation_layer/shipping_products_screen.dart';
@@ -57,20 +58,16 @@ class AppPages {
       page: () => const ProfileScreen(),
     ),
     GetPage(
-      name: OrdersScreen.routeName,
-      page: () => const OrdersScreen(),
-    ),
-    GetPage(
       name: ShippingChoicesScreen.routeName,
       page: () => const ShippingChoicesScreen(),
     ),
     GetPage(
-      name: ShippingProductsScreen.routeName,
-      page: () => const ShippingProductsScreen(),
-    ),
-    GetPage(
       name: NewOrderScreen.routeName,
       page: () => const NewOrderScreen(),
+    ),
+    GetPage(
+      name: CompanyHomeScreen.routeName,
+      page: () => const CompanyHomeScreen(),
     ),
   ];
 }

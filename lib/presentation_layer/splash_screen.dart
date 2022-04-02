@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:transportation_flutter_project/buisness_logic_layer/auth_controller.dart';
+import 'package:transportation_flutter_project/presentation_layer/company_home_screen.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
 
 import 'home_screen.dart';
 import 'login_screen.dart';
+import 'shipping_choices_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splashScreen';
@@ -15,7 +17,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  
   Future<void> loginSavedUsers() async {
     final authController = Get.find<AuthController>();
 
@@ -27,11 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
       Future.delayed(
         Duration.zero,
         () async {
-          // if (authController.userType.value == 2) {
-          //   Get.offNamed(VendorHomeScreen.routeName);
-          // } else {
-          Get.offNamed(HomeScreen.routeName);
-          // }
+          if (authController.userType.value == company) {
+            Get.offNamed(CompanyHomeScreen.routeName);
+          } else {
+            Get.offNamed(HomeScreen.routeName);
+          }
         },
       );
     } else {

@@ -8,12 +8,14 @@ import '../exceptions/unauthenticated_exception.dart';
 import 'package:dio/dio.dart' as dio;
 import '../presentation_layer/login_screen.dart';
 import '../shared/api_routes.dart';
-import '../shared/shared_widgets.dart';
 import '../utils/constants.dart';
 
 class AuthController extends GetConnect {
   RxInt uid = (-1).obs;
   RxString userType = ''.obs;
+
+  RxString name = ''.obs;
+  RxString img = ''.obs;
 
   bool isAuth() => uid > 0;
 
@@ -22,8 +24,8 @@ class AuthController extends GetConnect {
     bool _isLoggedIn = prefs.getBool(LOGGED_IN_KEY) ?? false;
     if (_isLoggedIn) {
       uid.value = prefs.getInt(uidKey) ?? -1;
-      // userType.value = prefs.getInt(userTypeKey) ?? -1;
-      // vendorId.value = prefs.getInt(vendorIdKey) ?? -1;
+      userType.value = prefs.getString(userTypeKey) ?? '';
+      print(userType.value);
       return true;
     } else {
       return false;
@@ -31,34 +33,46 @@ class AuthController extends GetConnect {
   }
 
   Future<void> loginUser(String username, String password) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(ApiRoutes.login);
-    Response response = await post(
-      ApiRoutes.login,
-      json.encode({
-        'username': username,
-        'password': password,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    );
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      print(ApiRoutes.login);
+      Response response = await post(
+        ApiRoutes.login,
+        json.encode({
+          'username': username,
+          'password': password,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
 
-    final decodedResponseBody = response.body;
-    print(decodedResponseBody);
-    print(response.statusCode);
-    if (response.statusCode == 201) {
-      uid.value = decodedResponseBody['id'];
-      userType.value = decodedResponseBody['type'];
+      final decodedResponseBody = response.body;
+      print(decodedResponseBody);
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        uid.value = decodedResponseBody['id'];
+        userType.value = decodedResponseBody['type'];
+        if (userType.value == consumer) {
+          name.value = decodedResponseBody['name'];
+          img.value = decodedResponseBody['profile_image'];
+        } else {
+          name.value = decodedResponseBody['name'];
+          img.value = decodedResponseBody['logo'];
+        }
 
-      await prefs.setInt(uidKey, uid.value);
-      await prefs.setString(userTypeKey, userType.value);
-      await prefs.setBool(LOGGED_IN_KEY, true);
-      print(uid.value);
-      print(userType.value);
-    } else {
-      throw UnauthenticatedException();
+        await prefs.setInt(uidKey, uid.value);
+        await prefs.setString(userTypeKey, userType.value);
+        await prefs.setBool(LOGGED_IN_KEY, true);
+        print(uid.value);
+        print(userType.value);
+      } else {
+        throw UnauthenticatedException();
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
     }
   }
 

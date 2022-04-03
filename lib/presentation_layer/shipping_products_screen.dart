@@ -82,6 +82,10 @@ class _ShippingProductsPageState extends State<ShippingProductsPage> {
                           const SizedBox(
                             height: 8,
                           ),
+                          if (productsController.companies.isEmpty)
+                            Center(
+                              child: Text('No Prices found'),
+                            ),
                           ...productsController.companies.map((comp) {
                             return Slidable(
                               closeOnScroll: true,

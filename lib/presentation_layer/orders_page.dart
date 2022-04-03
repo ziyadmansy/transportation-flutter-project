@@ -51,8 +51,7 @@ class _OrdersPageState extends State<OrdersPage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ListTile(
-                      title:
-                          Text('${order.service.toUpperCase()} - ${order.id}'),
+                      title: Text(order.service.toUpperCase()),
                       subtitle: Text(
                           'From: ${order.fromCountry}\nTo: ${order.toCountry}'),
                       isThreeLine: true,

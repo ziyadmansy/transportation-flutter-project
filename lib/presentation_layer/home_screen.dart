@@ -160,30 +160,30 @@ class _ShippingPageState extends State<ShippingPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Align(
-          alignment: Alignment.centerRight,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(kBorderRadius),
-                bottomLeft: Radius.circular(kBorderRadius),
-              ),
-            ),
-            child: InkWell(
-              onTap: () {
-                Get.toNamed(ProfileScreen.routeName);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.account_circle,
-                  size: 32,
-                ),
-              ),
-            ),
-          ),
-        ),
+        // Align(
+        //   alignment: Alignment.centerRight,
+        //   child: Container(
+        //     decoration: BoxDecoration(
+        //       color: Colors.white,
+        //       borderRadius: BorderRadius.only(
+        //         topLeft: Radius.circular(kBorderRadius),
+        //         bottomLeft: Radius.circular(kBorderRadius),
+        //       ),
+        //     ),
+        //     child: InkWell(
+        //       onTap: () {
+        //         Get.toNamed(ProfileScreen.routeName);
+        //       },
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(8.0),
+        //         child: Icon(
+        //           Icons.account_circle,
+        //           size: 32,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         SizedBox(
           height: 16,
         ),

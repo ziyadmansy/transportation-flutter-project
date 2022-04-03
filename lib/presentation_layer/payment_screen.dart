@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
+import 'package:transportation_flutter_project/utils/constants.dart';
 
 import '../shared/shared_widgets.dart';
 
@@ -133,7 +134,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       return null;
                     }
                   },
-                )
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+                SharedWidgets.buildElevatedButton(
+                  width: Get.width,
+                  onPress: () {
+                    Get.snackbar('Done', 'Credit Card Saved');
+                  },
+                  btnText: 'Pay',
+                  btnColor: primaryColor,
+                ),
               ],
             ),
           ),

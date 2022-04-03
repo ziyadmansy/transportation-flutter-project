@@ -5,6 +5,7 @@ import 'package:transportation_flutter_project/presentation_layer/home_screen.da
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
 
+import 'company_home_screen.dart';
 import 'register_company_screen.dart';
 import 'register_screen.dart';
 
@@ -41,7 +42,11 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
 
-        Get.offNamed(HomeScreen.routeName);
+        if (authController.userType.value == company) {
+          Get.offNamed(CompanyHomeScreen.routeName);
+        } else {
+          Get.offNamed(HomeScreen.routeName);
+        }
       } catch (error) {
         SharedWidgets.errorDialog(
           context: context,
@@ -139,16 +144,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     },
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  const Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 16,
+                  // ),
+                  // const Text(
+                  //   'Forgot Password?',
+                  //   style: TextStyle(
+                  //     color: Colors.white,
+                  //     fontSize: 16,
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 16,
                   ),
@@ -158,26 +163,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     btnText: 'Log in',
                     btnColor: primaryColor,
                   ),
+                  // SizedBox(
+                  //   height: 8,
+                  // ),
+                  // Text(
+                  //   'Or',
+                  //   style: TextStyle(
+                  //     color: Colors.white,
+                  //     fontSize: 16,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 8,
+                  // ),
+                  // SharedWidgets.buildElevatedButton(
+                  //   width: Get.width,
+                  //   onPress: () {},
+                  //   btnText: 'Log in with Google',
+                  // ),
                   SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Or',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  SharedWidgets.buildElevatedButton(
-                    width: Get.width,
-                    onPress: () {},
-                    btnText: 'Log in with Google',
-                  ),
-                  SizedBox(
-                    height: 16,
+                    height: 32,
                   ),
                   SharedWidgets.buildOutlinedButton(
                     onPress: () {

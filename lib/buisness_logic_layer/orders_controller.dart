@@ -12,7 +12,7 @@ class OrdersController extends GetConnect {
   RxList<Company> companies = <Company>[].obs;
   RxList<Order> orders = <Order>[].obs;
 
-  Future<void> getOrders({bool isCompany = true}) async {
+  Future<void> getOrders({required bool isCompany}) async {
     print(isCompany ? ApiRoutes.companyOrders : ApiRoutes.consumerOrders);
     Response response = await get(
       isCompany ? ApiRoutes.companyOrders : ApiRoutes.consumerOrders,

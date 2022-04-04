@@ -5,8 +5,8 @@ import 'package:transportation_flutter_project/buisness_logic_layer/orders_contr
 import '../utils/constants.dart';
 
 class OrdersPage extends StatefulWidget {
-  bool isCompany;
-  OrdersPage({Key? key, this.isCompany = false}) : super(key: key);
+  final bool isCompany;
+  const OrdersPage({Key? key, this.isCompany = false}) : super(key: key);
 
   @override
   State<OrdersPage> createState() => _OrdersPageState();

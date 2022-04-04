@@ -127,18 +127,6 @@ class _ShippingChoicesScreenState extends State<ShippingChoicesScreen> {
                       },
                     ),
                     buildChoiceCheckBox(
-                      title: 'Land',
-                      value: isLandChecked,
-                      imgPath: 'assets/imgs/land_logo.png',
-                      onChanged: (isChecked) {
-                        if (isChecked != null) {
-                          setState(() {
-                            isLandChecked = isChecked;
-                          });
-                        }
-                      },
-                    ),
-                    buildChoiceCheckBox(
                       title: 'Custom',
                       value: isCustomChecked,
                       imgPath: 'assets/imgs/customs_logo.png',
@@ -146,6 +134,18 @@ class _ShippingChoicesScreenState extends State<ShippingChoicesScreen> {
                         if (isChecked != null) {
                           setState(() {
                             isCustomChecked = isChecked;
+                          });
+                        }
+                      },
+                    ),
+                    buildChoiceCheckBox(
+                      title: 'Land',
+                      value: isLandChecked,
+                      imgPath: 'assets/imgs/land_logo.png',
+                      onChanged: (isChecked) {
+                        if (isChecked != null) {
+                          setState(() {
+                            isLandChecked = isChecked;
                           });
                         }
                       },

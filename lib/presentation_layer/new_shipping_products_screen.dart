@@ -172,97 +172,6 @@ class _NewShippingProductsScreenState extends State<NewShippingProductsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const Text(
-                            'Land Freight',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: primaryColor,
-                              fontSize: 24,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          ...landProducts.map((prod) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: SharedWidgets.buildBorderedDropDown<
-                                        int?>(
-                                      value: prod.product?.id,
-                                      items: productsController.products
-                                          .map(
-                                            (element) => DropdownMenuItem<int>(
-                                              value: element.id,
-                                              child: Text(
-                                                element.name,
-                                              ),
-                                            ),
-                                          )
-                                          .toList(),
-                                      hint: 'Products',
-                                      onChanged: (id) {
-                                        setState(() {
-                                          prod.product?.id = id!;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Expanded(
-                                    child: SharedWidgets.buildClickableTextForm(
-                                      hint: 'Price',
-                                      inputType:
-                                          TextInputType.numberWithOptions(
-                                        decimal: true,
-                                      ),
-                                      onChanged: (text) {
-                                        prod.price = double.tryParse(text) ?? 0;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          SharedWidgets.buildOutlinedButton(
-                            width: Get.width / 2,
-                            btnText: 'Add Land Product',
-                            onPress: () {
-                              landProducts.add(ShippingProduct(
-                                service: land,
-                                product: Product(id: null, name: ''),
-                              ));
-                            },
-                            btnColor: primaryColor,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
-                    ),
-                    color: Colors.white70,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16.0,
-                        horizontal: 8,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          const Text(
                             'Custom Freight',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -329,6 +238,97 @@ class _NewShippingProductsScreenState extends State<NewShippingProductsScreen> {
                               customProducts.add(ShippingProduct(
                                 service: custom,
                                 price: 0,
+                                product: Product(id: null, name: ''),
+                              ));
+                            },
+                            btnColor: primaryColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                    ),
+                    color: Colors.white70,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16.0,
+                        horizontal: 8,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text(
+                            'Land Freight',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: primaryColor,
+                              fontSize: 24,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          ...landProducts.map((prod) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: SharedWidgets.buildBorderedDropDown<
+                                        int?>(
+                                      value: prod.product?.id,
+                                      items: productsController.products
+                                          .map(
+                                            (element) => DropdownMenuItem<int>(
+                                              value: element.id,
+                                              child: Text(
+                                                element.name,
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                      hint: 'Products',
+                                      onChanged: (id) {
+                                        setState(() {
+                                          prod.product?.id = id!;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Expanded(
+                                    child: SharedWidgets.buildClickableTextForm(
+                                      hint: 'Price',
+                                      inputType:
+                                          TextInputType.numberWithOptions(
+                                        decimal: true,
+                                      ),
+                                      onChanged: (text) {
+                                        prod.price = double.tryParse(text) ?? 0;
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          SharedWidgets.buildOutlinedButton(
+                            width: Get.width / 2,
+                            btnText: 'Add Land Product',
+                            onPress: () {
+                              landProducts.add(ShippingProduct(
+                                service: land,
                                 product: Product(id: null, name: ''),
                               ));
                             },

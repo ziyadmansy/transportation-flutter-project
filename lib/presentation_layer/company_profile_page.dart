@@ -112,18 +112,6 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                               },
                             ),
                             buildChoiceCheckBox(
-                              title: 'Land',
-                              value: profileController.isLand.value,
-                              imgPath: 'assets/imgs/land_logo.png',
-                              onChanged: (isChecked) {
-                                if (isChecked != null) {
-                                  setState(() {
-                                    profileController.isLand.value = isChecked;
-                                  });
-                                }
-                              },
-                            ),
-                            buildChoiceCheckBox(
                               title: 'Custom',
                               value: profileController.isCustom.value,
                               imgPath: 'assets/imgs/customs_logo.png',
@@ -132,6 +120,18 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                   setState(() {
                                     profileController.isCustom.value =
                                         isChecked;
+                                  });
+                                }
+                              },
+                            ),
+                            buildChoiceCheckBox(
+                              title: 'Land',
+                              value: profileController.isLand.value,
+                              imgPath: 'assets/imgs/land_logo.png',
+                              onChanged: (isChecked) {
+                                if (isChecked != null) {
+                                  setState(() {
+                                    profileController.isLand.value = isChecked;
                                   });
                                 }
                               },

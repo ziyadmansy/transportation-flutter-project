@@ -198,22 +198,22 @@ class _ShippingPageState extends State<ShippingPage> {
           },
         ),
         buildTransportationCard(
-          title: 'Land Shipping',
-          imgPath: 'assets/imgs/land_logo.png',
-          onPressed: () {
-            Get.toNamed(
-              TransportationFormScreen.routeName,
-              arguments: land,
-            );
-          },
-        ),
-        buildTransportationCard(
           title: 'Customs',
           imgPath: 'assets/imgs/customs_logo.png',
           onPressed: () {
             Get.toNamed(
               TransportationFormScreen.routeName,
               arguments: custom,
+            );
+          },
+        ),
+        buildTransportationCard(
+          title: 'Land Shipping',
+          imgPath: 'assets/imgs/land_logo.png',
+          onPressed: () {
+            Get.toNamed(
+              TransportationFormScreen.routeName,
+              arguments: land,
             );
           },
         ),

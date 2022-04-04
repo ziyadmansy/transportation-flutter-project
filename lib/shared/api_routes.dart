@@ -1,10 +1,10 @@
 import 'package:transportation_flutter_project/shared/shared_widgets.dart';
 
 class ApiRoutes {
-  // static const String baseUrl = 'http://192.168.1.100';
-  static const String baseUrl = 'http://10.0.2.2:8000';
+  static const String baseUrl = 'http://18.198.107.110';
+  // static const String baseUrl = 'http://10.0.2.2:8000';
 
-  static const String apiUrl = '$baseUrl/api';
+  static const String apiUrl = '$baseUrl/shipping/api';
 
   static const String login = '$apiUrl/login';
   static const String consumerRegister = '$apiUrl/consumer-register';

@@ -35,7 +35,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
       },
       {
         'title': 'Orders',
-        'body': OrdersPage(),
+        'body': OrdersPage(isCompany: true,),
       },
       {
         'title': 'Menu',
@@ -94,12 +94,14 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
         ],
       ),
       body: _bottomNavItems[_selectedBottomNav]['body'] as Widget,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Get.toNamed(NewShippingProductsScreen.routeName);
-        },
-      ),
+      floatingActionButton: _selectedBottomNav == 0
+          ? FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                Get.toNamed(NewShippingProductsScreen.routeName);
+              },
+            )
+          : null,
     );
   }
 }

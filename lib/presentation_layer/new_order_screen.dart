@@ -40,6 +40,8 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
     } else {
       final ordersController = Get.find<OrdersController>();
 
+      print((args['company'] as Company).companyDetails!.id);
+
       await ordersController.makeOrder(
         service: (args['company'] as Company).service!,
         companyId: (args['company'] as Company).companyDetails!.id,

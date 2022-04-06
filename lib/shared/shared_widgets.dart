@@ -6,7 +6,7 @@ import '../buisness_logic_layer/auth_controller.dart';
 import '../utils/constants.dart';
 
 class SharedWidgets {
-  static int uid = Get.find<AuthController>().uid.value;
+  static RxInt uid = Get.find<AuthController>().uid;
 
   static AppBar appBar({required String title}) {
     return AppBar(

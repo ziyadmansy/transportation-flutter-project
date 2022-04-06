@@ -61,9 +61,9 @@ class ProductsController extends GetConnect {
   }
 
   Future<void> getCompanyPrices() async {
-    print(ApiRoutes.getCompanyPrices);
+    print(ApiRoutes.getCompanyPrices(SharedWidgets.uid.value));
     Response response = await get(
-      ApiRoutes.getCompanyPrices,
+      ApiRoutes.getCompanyPrices(SharedWidgets.uid.value),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

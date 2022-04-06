@@ -26,6 +26,7 @@ class AuthController extends GetConnect {
       uid.value = prefs.getInt(uidKey) ?? -1;
       userType.value = prefs.getString(userTypeKey) ?? '';
       print(userType.value);
+      uid.refresh();
       return true;
     } else {
       return false;
@@ -67,6 +68,7 @@ class AuthController extends GetConnect {
         await prefs.setBool(LOGGED_IN_KEY, true);
         print(uid.value);
         print(userType.value);
+        uid.refresh();
       } else {
         throw UnauthenticatedException();
       }
@@ -83,6 +85,7 @@ class AuthController extends GetConnect {
     required String lastName,
     required File image,
   }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     print(ApiRoutes.consumerRegister);
     var formData = dio.FormData.fromMap({
       'username': email,
@@ -102,7 +105,12 @@ class AuthController extends GetConnect {
     print(response.statusCode);
     if (response.statusCode == 201) {
       uid.value = decodedResponseBody['id'];
-      print(uid);
+      await prefs.setInt(uidKey, uid.value);
+      await prefs.setString(userTypeKey, consumer);
+      await prefs.setBool(LOGGED_IN_KEY, true);
+      print(uid.value);
+      print(userType.value);
+      uid.refresh();
     } else {
       throw UnauthenticatedException();
     }
@@ -118,6 +126,7 @@ class AuthController extends GetConnect {
     required bool isCustom,
   }) async {
     try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
       print(ApiRoutes.companyRegister);
       var formData = dio.FormData.fromMap({
         'username': email,
@@ -140,7 +149,13 @@ class AuthController extends GetConnect {
       print(response.statusCode);
       if (response.statusCode == 201) {
         uid.value = decodedResponseBody['id'];
+        await prefs.setInt(uidKey, uid.value);
+        await prefs.setString(userTypeKey, company);
+        await prefs.setBool(LOGGED_IN_KEY, true);
         print(uid.value);
+        print(userType.value);
+        print(uid.value);
+        uid.refresh();
       } else {
         throw UnauthenticatedException();
       }

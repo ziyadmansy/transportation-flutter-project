@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../shared/api_routes.dart';
+import '../shared/shared_widgets.dart';
 
 class ProfileController extends GetConnect {
   RxString name = ''.obs;
@@ -10,9 +11,9 @@ class ProfileController extends GetConnect {
   RxBool isCustom = false.obs;
 
   Future<void> getProfile() async {
-    print(ApiRoutes.companyDetails);
+    print(ApiRoutes.companyDetails(SharedWidgets.uid.value));
     Response response = await get(
-      ApiRoutes.companyDetails,
+      ApiRoutes.companyDetails(SharedWidgets.uid.value),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -34,7 +35,7 @@ class ProfileController extends GetConnect {
   Future<void> updateProfile() async {
     print(ApiRoutes.companyDetails);
     Response response = await put(
-      ApiRoutes.companyDetails,
+      ApiRoutes.companyDetails(SharedWidgets.uid.value),
       {
         'name': name.value,
         'is_sea_freight': isSea.value,

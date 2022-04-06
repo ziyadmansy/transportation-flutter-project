@@ -352,7 +352,7 @@ class _NewShippingProductsScreenState extends State<NewShippingProductsScreen> {
                       if (prodList.isNotEmpty) {
                         await addProducts(prodList);
                         await productsController.getCompanyPrices();
-                        Get.back();
+                        navigator?.pop();
                       } else {
                         Get.snackbar(
                             'Error', 'Please add at least one product');

@@ -41,7 +41,7 @@ class ProductsController extends GetConnect {
       prods
           .map(
             (prod) => {
-              'company': SharedWidgets.uid,
+              'company': SharedWidgets.uid.value,
               ...prod.toJson(),
             },
           )

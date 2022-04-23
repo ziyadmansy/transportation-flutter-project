@@ -48,7 +48,7 @@ class OrdersController extends GetConnect {
       ApiRoutes.createOrder,
       {
         'company': companyId,
-        'consumer': SharedWidgets.uid,
+        'consumer': SharedWidgets.uid.value,
         'weight': weight,
         'service': service,
         'from_country': from,

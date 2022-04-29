@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../exceptions/unauthenticated_exception.dart';
@@ -18,6 +19,8 @@ class AuthController extends GetConnect {
   RxString img = ''.obs;
 
   bool isAuth() => uid > 0;
+
+  
 
   Future<bool> checkLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -24,8 +24,8 @@ class _ShippingProductsPageState extends State<ShippingProductsPage> {
   }
 
   Future<void> deletePriceItem(int id) async {
-    final cartController = Get.find<ProductsController>();
-    await cartController.deleteCompanyPrice(id);
+    final prodController = Get.find<ProductsController>();
+    await prodController.deleteCompanyPrice(id);
   }
 
   @override

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:transportation_flutter_project/buisness_logic_layer/auth_controller.dart';
 import 'package:transportation_flutter_project/presentation_layer/company_home_screen.dart';
 import 'package:transportation_flutter_project/utils/constants.dart';
